@@ -1,0 +1,18 @@
+# all the spring properties can be referred here:
+# https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+spring:
+  # create mysql db using
+  # docker run --detach --name=test-mysql --env="MYSQL_ROOT_PASSWORD=mypassword" mysql
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+
+    # customer has to be manually created by user
+    # sprig boot will not create DB it will only create table
+    # https://stackoverflow.com/questions/43249308/cant-create-a-mysql-database-using-spring-boot/43249370
+    url: jdbc:mysql://172.17.0.2:3306/customer
+    username: root
+    password: mypassword
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
