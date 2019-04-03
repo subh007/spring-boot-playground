@@ -8,14 +8,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Customer {
-
-    @Id
-    @GeneratedValue        /// why generatedValue is here  ??
+    /// why generatedValue is here  ??
     public Long getId() {
         return id;
     }
 
-    
     public void setId(Long id) {
         this.id = id;
     }
@@ -36,6 +33,8 @@ public class Customer {
         this.address = address;
     }
 
+    @Id
+    @GeneratedValue
     Long id;
     String name;
     String address;
