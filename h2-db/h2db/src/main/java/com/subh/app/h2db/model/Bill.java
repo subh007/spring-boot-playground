@@ -12,9 +12,12 @@ import javax.persistence.Table;
 public class Bill {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     Long id;
+
+    @Column(name = "foreign_customer_id")
+    Long customerId;
 
 
     public Long getId() {

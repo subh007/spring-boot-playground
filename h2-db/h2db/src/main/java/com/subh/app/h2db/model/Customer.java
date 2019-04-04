@@ -9,13 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
-    /// why generatedValue is here  ??
     public Long getId() {
         return id;
     }
@@ -41,8 +42,8 @@ public class Customer {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "customer_id")
     Long id;
 
     @Column(name = "name")
@@ -51,17 +52,20 @@ public class Customer {
     @Column(name = "address")
     String address;
 
-    public Bill getBill() {
-        return bill;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "foreign_customer_id", referencedColumnName = "customer_id")
+    List<Bill> bills;
+
+    public List<Bill> getBills() {
+        return bills;
     }
 
-    public void setBill(Bill bill) {
-        this.bill = bill;
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
     }
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    Bill bill;
 
     public Customer(){
     }
