@@ -53,20 +53,6 @@ public class Customer {
     String address;
 
 
-
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "foreign_customer_id", referencedColumnName = "customer_id")
-    List<Bill> bills;
-
-    public List<Bill> getBills() {
-        return bills;
-    }
-
-    public void setBills(List<Bill> bills) {
-        this.bills = bills;
-    }
-
     public Customer(){
     }
 }
